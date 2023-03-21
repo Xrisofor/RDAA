@@ -1,2 +1,29 @@
-# RDAA
-RDAA (RenPy download of additional assets) is a small add-on for RADC, translated into English and Russian, as well as with the function of automatically unpacking the archive after downloading
+<h1 align="center">RDAA (RenPy download of additional assets)
+<h3 align="center">This is a small reworking of the <a href="https://github.com/CharlieFuu69/RenPy_Asset_Download_Complement">RADC</a> project, translated into English and Russian, as well as with the function of automatically unpacking the archive after downloading</h3>
+
+---
+
+### ✒️ About the project:
+- Modified <a href="https://github.com/CharlieFuu69/RenPy_Asset_Download_Complement">RADC</a> code 😄
+- Adding support for new languages 📚
+- Adding the ability to automatically unpack and restart the project 🔑<br>
+
+---
+
+### :hammer_and_wrench: Language and Tools:
+<div>
+  <a href="https://renpy.org/">
+    <img src="https://img.shields.io/badge/RenPy-important?style=for-the-badge&logo=renpy&logoColor=white" alt="RenPy Badge"/>
+  </a>
+  <a href="[https://renpy.org/](https://www.python.org/)">
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python Badge"/>
+  </a>
+</div>
+
+---
+ 
+### 🖥️ Project Setup:
+- Download <a href="https://renpy.org/">RenPy</a>
+- Copy the files from the archive to the folder with your project, if you need a replacement consent, agree
+- Open the file ``script.py`` and replace the link in the ``link`` variable with your
+- You can also redo screens and functions that are located in the ``rdaa_plugin.rpy`` and ``rdaa_screens.rpy`` files in the `rdaa` folder
