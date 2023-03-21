@@ -27,3 +27,12 @@
 - Copy the files from the archive to the folder with your project, if you need a replacement consent, agree
 - Open the file ``script.py`` and replace the link in the ``link`` variable with your
 - You can also redo screens and functions that are located in the ``rdaa_plugin.rpy`` and ``rdaa_screens.rpy`` files in the `rdaa` folder
+
+---
+ 
+### 🖼 Screenshots:
+<div>
+  <img src="https://raw.githubusercontent.com/Xrisofor/RDAA/main/screenshots/screenshot_1.png" alt="Screenshot 1"/>
+  <img src="https://raw.githubusercontent.com/Xrisofor/RDAA/main/screenshots/screenshot_2.png" alt="Screenshot 2"/>
+  <img src="https://raw.githubusercontent.com/Xrisofor/RDAA/main/screenshots/screenshot_3.png" alt="Screenshot 3"/>
+</div>
