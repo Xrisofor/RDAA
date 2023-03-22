@@ -22,7 +22,7 @@
 
 ---
 
-### ✒️ Supported devices:
+### ⚙️ Supported devices:
 - Windows ✔️
 - Linux ✔️
 - MacOS ❌
