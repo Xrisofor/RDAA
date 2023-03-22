@@ -4,7 +4,14 @@ init python:
     import os, wget, threading, ssl, re, requests, zipfile, os.path
 
     def searchpath():
-        path = (config.gamedir if renpy.windows else os.environ["ANDROID_PUBLIC"] + "/game")
+        path = None
+        if renpy.windows:
+            path = config.gamedir
+        elif renpy.linux:
+            path = config.gamedir
+        else:
+            path = os.environ["ANDROID_PUBLIC"] + "/game"
+
         if not os.path.exists(path):
             os.mkdir(path)
         return path
