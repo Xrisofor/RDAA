@@ -21,6 +21,15 @@
 </div>
 
 ---
+
+### ✒️ Supported devices:
+- Windows ✔️
+- Linux ✔️
+- MacOS ❌
+- Android ✔️
+- IOS ❌<br>
+
+---
  
 ### 🖥️ Project Setup:
 - Download <a href="https://renpy.org/">RenPy</a>
