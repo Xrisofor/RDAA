@@ -16,7 +16,7 @@
     <img src="https://img.shields.io/badge/RenPy-important?style=for-the-badge&logo=renpy&logoColor=white" alt="RenPy Badge"/>
   </a>
   <a href="[https://renpy.org/](https://www.python.org/)">
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python Badge"/>
+    <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python Badge"/>
   </a>
 </div>
 
