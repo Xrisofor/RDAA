@@ -34,8 +34,10 @@
 ### 🖥️ Project Setup:
 - Download <a href="https://renpy.org/">RenPy</a>
 - Copy the files from the archive to the folder with your project, if you need a replacement consent, agree
-- Open the file ``script.rpy`` and replace the link in the ``link`` variable with your
-- You can also redo screens and functions that are located in the ``rdaa_plugin.rpy`` and ``rdaa_screens.rpy`` files in the `rdaa` folder
+- Upload your zip archive to any hosting, file exchange, etc.
+- Upload the ``state.json`` file to any server, file sharing, etc.
+- Open the ``script.rpy`` file and replace the links in the ``link`` variable and the ``UpdateConfig`` class call with your
+- You can also redo screens and functions that are located in the ``rdaa_plugin.rpy`` and ``rdaa_screens.rpy`` files in the ``rdaa`` folder
 
 ---
  
