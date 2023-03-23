@@ -6,7 +6,8 @@
 ### ✒️ About the project:
 - Modified <a href="https://github.com/CharlieFuu69/RenPy_Asset_Download_Complement">RADC</a> code 😄
 - Adding support for new languages 📚
-- Adding the ability to automatically unpack and restart the project 🔑<br>
+- Adding the ability to automatically unpack and restart the project 🔑
+- Added support for checking the version through the server using ``json`` files 📡<br>
 
 ---
 
