@@ -2,7 +2,7 @@ init offset = -5
 
 define client_version = "0.0.0.0"
 define server_version = "0.0.0.0"
-define version_f = "0.0.0.0"
+define version_f = None
 
 init python:
     import os, wget, threading, ssl, re, requests, zipfile, os.path, urllib3, json
