@@ -1,7 +1,11 @@
 init offset = -5
 
+define client_version = "0.0.0.0"
+define server_version = "0.0.0.0"
+define version_f = "0.0.0.0"
+
 init python:
-    import os, wget, threading, ssl, re, requests, zipfile, os.path
+    import os, wget, threading, ssl, re, requests, zipfile, os.path, urllib3, json
 
     def searchpath():
         path = None
@@ -16,68 +20,46 @@ init python:
             os.mkdir(path)
         return path
 
-    class SharedCloudGetFile(threading.Thread):
-        """This class is responsible for getting the final URL of the file stored in
-        some cloud that displays the final URL on the file upload page"""
+    version_f = searchpath() + "/version.txt"
 
-        def __init__(self, shared_url):
-            super(SharedCloudGetFile, self).__init__()
-            self.daemon = True
-            self.shared_url = shared_url
-            self.fetch_finish = False
-            self.url_end = None
-            self.fetch_exception = None
+    class UpdateConfig(threading.Thread):
+        def __init__(self, url):
+            http = urllib3.PoolManager()
+            response = http.request('GET', url)
+            data = response.data.decode('utf-8')
+            data = json.loads(data)
+            server_version = data['version']
 
-        def status(self):
-            """Returns bool regardless of whether the recovery is completed or not"""
-            return self.fetch_finish
+            self.server_version = server_version
+            self.client_version = client_version
+            self.version_f = version_f
 
-        def end_url(self):
-            """Returns the final download URL"""
-            return self.url_end
+        def checkVersion(self):
+            if os.path.isfile(self.version_f):
+                version_file = open(self.version_f, 'r')
+                self.client_version = version_file.read()
+                version_file.close()
 
-        def runtime_exception(self):
-            """Returns True regardless of whether there was an exception or not during recovery"""
-            if isinstance(self.fetch_exception, Exception):
+            print("Server: " + self.server_version)
+            print("Client: " + self.client_version)
+
+            if self.client_version != self.server_version:
+                return False
+            else:
                 return True
-            return False
-
-        def run(self):
-            """Cleans up the shared URL"""
-
-            headers = {"User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"}
-            url_prefixes = ("https://download", "https://cdn-")
-
-            try:
-                ssl._create_default_https_context = ssl._create_unverified_context
-
-                r = requests.get(self.shared_url, headers = headers)
-                url = re.findall('"((http|ftp)s?://.*?)"', r.text)
-                
-                for i in url:
-                    if i[0].startswith(url_prefixes):
-                        self.url_end = i[0]
-                        break
-                    else:
-                        pass
-
-            except Exception as fetcherr:
-                self.fetch_exception = fetcherr
-                print("[Error - SharedCloudGetFile]: %s" % fetcherr)
-
-            finally:
-                self.fetch_finish = True
-                renpy.restart_interaction()
 
     class DownloadHandler(threading.Thread):
         """This class is responsible for executing and tracking the requested download"""
 
-        def __init__(self, url, savepath = None, auto_extract = False):
+        def __init__(self, url, uc, savepath = None, auto_extract = False):
             """Constructor of the class. Gets the following arguments:
 
             url (necessarily):
                 The URL of the file you want to download. It should be a physical file,
                 not the planned site
+
+            uc (necessarily):
+                The UpdateConfig class through which some information is checked and obtained
 
             savepath:
                 If it is not None, it is a string with the physical path to the device on
@@ -98,6 +80,9 @@ init python:
 
             self.dl_status = False
             self.exception_output = None
+
+            self.server_version = server_version
+            self.version_f = version_f
 
         @property
         def gauge(self):
@@ -137,6 +122,7 @@ init python:
 
             try:
                 wget.download(self.endpoint_url, self.dl_path, bar = self.progress_handler)
+                    
             except Exception as ex:
                 self.exception_output = ex
                 self.dl_percent = 0.0
@@ -149,5 +135,9 @@ init python:
                         zip_file.extractall(searchpath() + "/")
                         zip_file.close()
                     os.remove(self.dl_path)
+
+                version_file = open(uc.version_f, "w+")
+                version_file.write(uc.server_version)
+                version_file.close()
 
                 renpy.restart_interaction()

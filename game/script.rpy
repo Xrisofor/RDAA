@@ -13,8 +13,10 @@ label start:
     $ link = "https://www.dropbox.com/s/con9os8cd11be67/test.zip?dl=1"
     $ path = searchpath() + "/game_data.zip"
 
-    if not persistent.download:
-        call screen download(url = link, savepath = path, auto_extract = True)
+    default uc = UpdateConfig("https://www.dropbox.com/s/4iptx3637tnxdp4/state.json?dl=1")
+
+    if uc.checkVersion() == False:
+        call screen download(url = link, uc = uc, savepath = path, auto_extract = True)
 
     scene bg
 
